@@ -24,7 +24,7 @@ const PlayerContextProvider = ({ children }) => {
 
   // <----Authentication States---->
   const [isFixed, setIsFixed] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [accessToken, setAccessToken] = useState(null);
   const [currentState, setCurrentState] = useState(false);
 
