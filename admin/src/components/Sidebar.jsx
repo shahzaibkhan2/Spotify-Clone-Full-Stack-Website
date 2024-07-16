@@ -1,5 +1,9 @@
 import { assets } from "../assets/assets";
 import { NavLink } from "react-router-dom";
+import { PiMusicNotesPlusFill } from "react-icons/pi";
+import { BsMusicNoteList } from "react-icons/bs";
+import { MdLibraryMusic } from "react-icons/md";
+import { IoIosAlbums } from "react-icons/io";
 
 const Sidebar = () => {
   return (
@@ -11,36 +15,37 @@ const Sidebar = () => {
       />
       <img
         className="custom-width-sm mr-5 mt-5 sm:hidden block"
-        src={assets.logo_small}
+        src={assets.logoMini}
         alt="logo"
       />
       <div className="flex gap-5 mt-10 flex-col">
         <NavLink
           to="/add-song"
-          className="flex gap-2.5 items-center bg-white text-gray-800 border border-black drop-shadow-[-4px_4px_#00ff5b] p-2 text-sm font-medium custom-pr"
+          className="flex gap-2.5 items-center bg-[#a04c68] text-white border drop-shadow-[-4px_4px_#fff] p-2 text-sm font-medium custom-pr"
         >
-          <img className="w-5" src={assets.add_song} alt="song" />
+          <PiMusicNotesPlusFill className="w-7 h-7" />
           <p className="hidden sm:block">Add Song</p>
         </NavLink>
         <NavLink
           to="/list-song"
-          className="flex gap-2.5 items-center bg-white text-gray-800 border border-black drop-shadow-[-4px_4px_#00ff5b] p-2 text-sm font-medium custom-pr"
+          className="flex gap-2.5 items-center bg-[#a04c68] text-white border drop-shadow-[-4px_4px_#fff] p-2 text-sm font-medium custom-pr"
         >
-          <img className="w-5" src={assets.song_icon} alt="song" />
+          <BsMusicNoteList className="w-6 h-6" />
           <p className="hidden sm:block">Song List</p>
         </NavLink>
         <NavLink
           to="/add-album"
-          className="flex gap-2.5 items-center bg-white text-gray-800 border border-black drop-shadow-[-4px_4px_#00ff5b] p-2 text-sm font-medium custom-pr"
+          className="flex gap-2.5 items-center bg-[#a04c68] text-white border drop-shadow-[-4px_4px_#fff] p-2 text-sm font-medium custom-pr"
         >
-          <img className="w-5" src={assets.add_album} alt="song" />
+          <MdLibraryMusic className="w-6 h-6" />
           <p className="hidden sm:block">Add Album</p>
         </NavLink>
         <NavLink
           to="/list-album"
-          className="flex gap-2.5 items-center bg-white text-gray-800 border border-black drop-shadow-[-4px_4px_#00ff5b] p-2 text-sm font-medium custom-pr"
+          className="flex gap-2.5 items-center bg-[#a04c68] text-white border drop-shadow-[-4px_4px_#fff] p-2 text-sm font-medium custom-pr"
         >
-          <img className="w-5" src={assets.album_icon} alt="song" />
+          <IoIosAlbums className="w-6 h-6" />
+
           <p className="hidden sm:block">Album List</p>
         </NavLink>
       </div>

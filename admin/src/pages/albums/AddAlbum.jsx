@@ -36,7 +36,7 @@ const AddAlbum = () => {
         <label className="cursor-pointer" htmlFor="image">
           <img
             className="w-24"
-            src={albumImage ? albumImage : assets.upload_area}
+            src={albumImage ? albumImage : assets.uploadImg}
             alt="upload-image"
           />
         </label>
@@ -66,7 +66,7 @@ const AddAlbum = () => {
         <input ref={albumBgColorRef} type="color" />
       </div>
 
-      <button className="bg-black text-base text-white px-14 py-2.5 cursor-pointer rounded-lg">
+      <button className="bg-[#a04c68] text-base text-white px-14 py-2.5 cursor-pointer rounded-lg">
         Upload
       </button>
     </form>

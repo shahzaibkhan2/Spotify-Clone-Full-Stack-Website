@@ -40,7 +40,7 @@ const AddSong = () => {
           <label htmlFor="song">
             <img
               className="w-24 cursor-pointer"
-              src={song ? assets.upload_added : assets.upload_song}
+              src={song ? assets.upload_added : assets.uploadSong}
               alt="upload"
             />
           </label>
@@ -58,7 +58,7 @@ const AddSong = () => {
           <label htmlFor="image">
             <img
               className="w-24 cursor-pointer"
-              src={image ? image : assets.upload_area}
+              src={image ? image : assets.uploadImg}
               alt="upload"
             />
           </label>
@@ -100,7 +100,7 @@ const AddSong = () => {
       </section>
       <button
         type="submit"
-        className="bg-black text-base text-white px-14 py-2.5 rounded-lg cursor-pointer"
+        className="bg-[#a04c68] text-base text-white px-14 py-2.5 rounded-lg cursor-pointer"
       >
         Upload
       </button>
