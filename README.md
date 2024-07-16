@@ -11,3 +11,5 @@ This website also includes a separate Admin Panel through which you can keep tra
 ![HOME PAGE](frontend/src/assets/spotify-2.jpg)
 # Album Page
 ![HOME PAGE](frontend/src/assets/spotify-3.jpg)
+# BeatFlow Admin Panel
+![HOME PAGE](admin/src/assets/spotify-4.jpg)
