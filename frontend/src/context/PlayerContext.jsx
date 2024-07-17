@@ -1,10 +1,13 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { apiUri } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 export const PlayerContext = createContext();
 
 const PlayerContextProvider = ({ children }) => {
+  // <------------------- Routes and Navigation ----------------->
+
   //<----------------------- States --------------------------->
 
   const [songsData, setSongsData] = useState([]);
@@ -22,11 +25,13 @@ const PlayerContextProvider = ({ children }) => {
     },
   });
 
-  // <----Authentication States---->
+  // <====== Authentication States ======>
   const [isFixed, setIsFixed] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
-  const [currentState, setCurrentState] = useState(false);
+  const [currentState, setCurrentState] = useState("Sign Up");
+  const [showLogin, setShowLogin] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   // <------------------------------ useRef References ------------------------>
 
@@ -34,6 +39,12 @@ const PlayerContextProvider = ({ children }) => {
   const seekBgRef = useRef(null);
   const seekBarRef = useRef(null);
   const feedRef = useRef(null);
+
+  // <====== Authentication useRef References ======>
+
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const passRef = useRef();
 
   //   <------------------------ Methods & Functions ----------------------->
 
@@ -120,6 +131,53 @@ const PlayerContextProvider = ({ children }) => {
     }
   };
 
+  // <======== Authentication Methods and Functions ========>
+
+  const onLogin = async (event) => {
+    event.preventDefault();
+    let newUri = apiUri.usersUri;
+    if (currentState === "Login") {
+      newUri += "/login";
+      const response = await axios.post(`${apiUri.baseUri}/${newUri}`, {
+        password: passRef.current.value,
+        email: emailRef.current.value,
+      });
+
+      if (response.data.success) {
+        setAccessToken(response.data.data.accessToken);
+        localStorage.setItem("accessToken", response.data.data.accessToken);
+        setShowLogin(false);
+        setIsLoggedIn(true);
+      }
+    } else {
+      newUri += "/register";
+      const response = await axios.post(`${apiUri.baseUri}/${newUri}`, {
+        name: nameRef.current.value,
+        password: passRef.current.value,
+        email: emailRef.current.value,
+      });
+
+      if (response.data.success) {
+        setShowLogin(false);
+        console.log("Sign up successful !");
+      }
+    }
+  };
+
+  const logoutHandler = () => {
+    localStorage.removeItem("accessToken");
+    setAccessToken("");
+    setIsLoggedIn(false);
+    setShowLogout(false);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setAccessToken(localStorage.getItem("accessToken"));
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   // <------------------- Page Rendering Methods and Hooks -------------------->
 
   useEffect(() => {
@@ -179,7 +237,17 @@ const PlayerContextProvider = ({ children }) => {
     isFixed,
     isLoggedIn,
     currentState,
+    setCurrentState,
     accessToken,
+    showLogin,
+    setShowLogin,
+    onLogin,
+    nameRef,
+    emailRef,
+    passRef,
+    showLogout,
+    setShowLogout,
+    logoutHandler,
   };
 
   //   <------------------------ Provider Wrapper ------------------------->

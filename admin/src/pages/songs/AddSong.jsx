@@ -69,7 +69,7 @@ const AddSong = () => {
         <input
           ref={nameRef}
           type="text"
-          className="outline-green-600 border-2 bg-transparent border-gray-400 p-2.5 custom-width-2xl"
+          className="outline-[#a04c68] border-2 bg-transparent border-gray-400 p-2.5 custom-width-2xl rounded-lg"
           placeholder="Name Here..."
           required
         />
@@ -79,7 +79,7 @@ const AddSong = () => {
         <input
           ref={descriptionRef}
           type="text"
-          className="outline-green-600 border-2 bg-transparent border-gray-400 p-2.5 custom-width-2xl"
+          className="outline-[#a04c68] border-2 bg-transparent border-gray-400 p-2.5 custom-width-2xl rounded-lg"
           placeholder="Description Here..."
           required
         />
@@ -88,7 +88,7 @@ const AddSong = () => {
         <p>Album</p>
         <select
           ref={albumRef}
-          className="outline-green-600 border-2 bg-transparent border-gray-400 p-2.5 w-[150px]"
+          className="outline-green-600 border-2 bg-transparent border-gray-400 p-2.5 w-[150px] rounded-lg"
         >
           <option value="none">None</option>
           {listAlbum.map((item, index) => (
@@ -100,7 +100,7 @@ const AddSong = () => {
       </section>
       <button
         type="submit"
-        className="bg-[#a04c68] text-base text-white px-14 py-2.5 rounded-lg cursor-pointer"
+        className="bg-[#a04c68] text-base text-white px-12 py-2.5 rounded-lg cursor-pointer"
       >
         Upload
       </button>

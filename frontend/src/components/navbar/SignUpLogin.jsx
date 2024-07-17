@@ -1,60 +1,35 @@
-import { LuUtensilsCrossed } from "react-icons/lu";
-import { useRef } from "react";
+import { useContext } from "react";
 import { GiCrossMark } from "react-icons/gi";
-
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { PlayerContext } from "../../context/PlayerContext";
 
 const SignUpLogin = () => {
-  const navigate = useNavigate();
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const passRef = useRef();
-
-  const onLogin = async (event) => {
-    event.preventDefault();
-    let newUri = envVars.userServerUri;
-    if (currentState === "Login") {
-      newUri += "/login";
-      const response = await axios.post(newUri, {
-        password: passRef.current.value,
-        email: emailRef.current.value,
-      });
-
-      if (response.data.success) {
-        dispatch(stateActions.setAccessToken(response.data.data.accessToken));
-        localStorage.setItem("accessToken", response.data.data.accessToken);
-        dispatch(stateActions.setShowLogin(false));
-        navigate("/");
-        dispatch(stateActions.setMenu("home"));
-      }
-    } else {
-      newUri += "/register";
-      const response = await axios.post(newUri, {
-        name: nameRef.current.value,
-        password: passRef.current.value,
-        email: emailRef.current.value,
-      });
-
-      if (response.data.success) {
-        dispatch(stateActions.setShowLogin(false));
-        navigate("/");
-        dispatch(stateActions.setMenu("home"));
-        console.log("Sign up successful !");
-      }
-    }
-  };
+  const {
+    currentState,
+    setCurrentState,
+    setShowLogin,
+    onLogin,
+    nameRef,
+    emailRef,
+    passRef,
+  } = useContext(PlayerContext);
 
   return (
-    <div>
-      <form onSubmit={onLogin}>
-        <div>
-          <h2>{currentState}</h2>
-          <GiCrossMark />
+    <main className="h-screen w-screen absolute top-0 bg-black bg-opacity-80 grid place-content-center z-50">
+      <form
+        className="w-96 px-8 py-6 bg-white bg-opacity-90 text-black h-max rounded-2xl"
+        onSubmit={onLogin}
+      >
+        <div className="flex justify-between mb-6">
+          <h2 className="font-bold text-3xl">{currentState}</h2>
+          <GiCrossMark
+            onClick={() => setShowLogin(false)}
+            className="w-6 h-7 cursor-pointer"
+          />
         </div>
-        <div>
+        <div className="flex flex-col gap-10">
           {currentState === "Sign Up" && (
             <input
+              className="border  rounded-lg border-gray-400 outline-[#f95d70] p-3"
               name="name"
               ref={nameRef}
               type="text"
@@ -63,6 +38,7 @@ const SignUpLogin = () => {
             />
           )}
           <input
+            className="border  rounded-lg border-gray-400 outline-[#f95d70] p-3"
             name="email"
             ref={emailRef}
             type="email"
@@ -70,6 +46,7 @@ const SignUpLogin = () => {
             required
           />
           <input
+            className="border  rounded-lg border-gray-400 outline-[#f95d70] p-3"
             name="password"
             ref={passRef}
             type="password"
@@ -77,26 +54,43 @@ const SignUpLogin = () => {
             required
           />
         </div>
-        <button type="submit">
+        <button
+          className="bg-black text-white px-9 py-2 my-4 rounded-lg"
+          type="submit"
+        >
           {currentState === "Sign Up" ? "Sign Up" : "Login"}
         </button>
-        <div>
-          <input type="checkbox" required />
+        <div className="flex gap-2">
+          <input
+            className="mt-[-22px] cursor-pointer"
+            type="checkbox"
+            required
+          />
           <p>By proceeding, I agree to the terms of use and privacy policy. </p>
         </div>
         {currentState === "Sign Up" ? (
           <p>
-            Already have an account?
-            <span onClick={() => setCurrentState("Login")}>Login here</span>
+            Already have an account?{" "}
+            <span
+              className="cursor-pointer text-[#f95d70]"
+              onClick={() => setCurrentState("Login")}
+            >
+              Login here
+            </span>
           </p>
         ) : (
           <p>
-            Create a new account?
-            <span onClick={() => setCurrentState("Sign Up")}>Create here</span>
+            Create a new account?{" "}
+            <span
+              className="cursor-pointer text-[#f95d70]"
+              onClick={() => setCurrentState("Sign Up")}
+            >
+              Create here
+            </span>
           </p>
         )}
       </form>
-    </div>
+    </main>
   );
 };
 

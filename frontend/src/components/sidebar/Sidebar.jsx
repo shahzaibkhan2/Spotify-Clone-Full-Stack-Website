@@ -3,9 +3,13 @@ import { assets } from "../../assets/assets";
 import { MdHomeFilled } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 import { LuPlus } from "react-icons/lu";
+import { FaArrowRight } from "react-icons/fa6";
 
 import Footer from "../footer/Footer";
+import { useContext } from "react";
+import { PlayerContext } from "../../context/PlayerContext";
 const Sidebar = () => {
+  const { isLoggedIn } = useContext(PlayerContext);
   const navigate = useNavigate();
   return (
     <aside className="w-[23%] h-full p-2 flex-col text-white gap-2 hidden lg:flex">
@@ -41,7 +45,13 @@ const Sidebar = () => {
             </p>
           </div>
           <div className="flex gap-3 items-center rounded-full p-2 hover:bg-opacity-50 cursor-pointer">
-            <LuPlus className="text-[#b3b3b3] hover:text-white" size={30} />
+            <LuPlus className="text-[#b3b3b3] hover:text-white" size={20} />
+            {isLoggedIn && (
+              <FaArrowRight
+                className="text-[#b3b3b3] hover:text-white"
+                size={20}
+              />
+            )}
           </div>
         </div>
       </section>
