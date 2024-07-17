@@ -7,9 +7,11 @@ This website also includes a separate Admin Panel through which you can keep tra
 
 # Landing Page
 ![HOME PAGE](frontend/src/assets/spotify-1.jpg)
+# Login and Registeration
+![HOME PAGE](frontend/src/assets/spotify-6.jpg)
 # Footer
-![HOME PAGE](frontend/src/assets/spotify-2.jpg)
+![FOOTER](frontend/src/assets/spotify-2.jpg)
 # Album Page
-![HOME PAGE](frontend/src/assets/spotify-3.jpg)
+![ALBUM](frontend/src/assets/spotify-3.jpg)
 # BeatFlow Admin Panel
-![HOME PAGE](admin/src/assets/spotify-4.jpg)
+![ADMIN](admin/src/assets/spotify-4.jpg)
